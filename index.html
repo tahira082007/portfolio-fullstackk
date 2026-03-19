@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1e293b, #3b82f6);
+    }
+
+    h1 {
+      font-size: 45px;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      border-left: 4px solid #3b82f6;
+      padding-left: 10px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .skills span {
+      display: inline-block;
+      background: #3b82f6;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input {
+      background: #334155;
+      color: white;
+    }
+
+    button {
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e293b;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Tahira</h1>
+  <p>Aspiring Web Developer | Student</p>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <div class="card">
+    <p>I am a passionate student learning web development. I enjoy building simple and useful web applications.</p>
+  </div>
+
+  <h2>Skills</h2>
+  <div class="card skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>Node.js</span>
+    <span>MySQL</span>
+  </div>
+
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Lost & Found System</h3>
+      <p>A platform where students can report lost and found items.</p>
+    </div>
+    <div class="card">
+      <h3>Portfolio Website</h3>
+      <p>A personal website showcasing my skills and work.</p>
+    </div>
+  </div>
+
+  <h2>Contact Me</h2>
+  <div class="card">
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Your Name</p>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch("http://localhost:3000/submit", {
+    method: "POST",
+    body: new URLSearchParams(formData)
+  })
+  .then(res => res.text())
+  .then(data => alert(data));
+});
+</script>
+
+</body>
+</html>
