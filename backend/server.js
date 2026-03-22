@@ -1,17 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 
 app.use(cors());
-
-// 🔥 ADD THIS LINE
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Home route
 app.get("/", (req, res) => {
-  res.send("Server is running");
+  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
 });
 
 // Submit route
