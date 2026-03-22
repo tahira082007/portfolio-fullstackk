@@ -64,7 +64,7 @@
       gap: 15px;
     }
 
-    input, button {
+    input, textarea, button {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
@@ -73,7 +73,7 @@
       font-size: 16px;
     }
 
-    input {
+    input, textarea {
       background: #334155;
       color: white;
     }
@@ -134,30 +134,36 @@
 
   <h2>Contact Me</h2>
   <div class="card">
-  <form id="contactForm">
-  <input type="text" name="name" placeholder="Your Name" required>
-  
-  <input type="email" name="email" placeholder="Your Email" required>
-
- 
- <textarea name="message" placeholder="Your Message" required></textarea>
-
-  <button type="submit">Send Message</button>
-</form>
-</div>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
 
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // prevent page reload
+  e.preventDefault();
 
   const formData = new FormData(this);
 
-fetch("https://portfolio-fullstackk-1.onrender.com/submit", {
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message")
+  };
+
+  fetch("https://portfolio-fullstackk-1.onrender.com/submit", {
     method: "POST",
-    body: new URLSearchParams(formData)
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
   })
   .then(res => res.text())
-  .then(data => alert(data)) // shows the server message
+  .then(data => alert(data))
   .catch(err => alert("Error sending data"));
 });
 </script>
