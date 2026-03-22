@@ -9,19 +9,20 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Serve frontend
-app.use(express.static(path.join(__dirname, "../frontend")));
+// ✅ Correct frontend path
+const frontendPath = path.join(__dirname, "../frontend");
+app.use(express.static(frontendPath));
 
 // Home route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-// MySQL connection
+// ✅ MySQL connection
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",        // change if needed
-  password: "tahira123",        // add your password if any
+  user: "root",
+  password: "tahira123",
   database: "project"
 });
 
@@ -33,9 +34,11 @@ db.connect((err) => {
   }
 });
 
-// Submit route
+// ✅ Submit route (with DEBUG)
 app.post("/submit", (req, res) => {
   try {
+    console.log("📩 Incoming Data:", req.body); // 👈 IMPORTANT DEBUG
+
     const { name, email, message } = req.body;
 
     // Validation
@@ -47,7 +50,7 @@ app.post("/submit", (req, res) => {
 
     db.query(sql, [name, email, message], (err, result) => {
       if (err) {
-        console.error("❌ DB Error:", err);
+        console.error("❌ DB Error FULL:", err); // 👈 FULL ERROR
         return res.status(500).send("Error saving message");
       }
 
@@ -56,7 +59,7 @@ app.post("/submit", (req, res) => {
     });
 
   } catch (error) {
-    console.error("❌ ERROR:", error);
+    console.error("❌ SERVER ERROR:", error);
     res.status(500).send("Something went wrong");
   }
 });
