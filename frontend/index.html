@@ -155,7 +155,8 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     message: formData.get("message")
   };
 
-  fetch("https://portfolio-fullstackk-1.onrender.com/submit", {
+  // ✅ FIXED: using localhost
+  fetch("http://localhost:3000/submit", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
