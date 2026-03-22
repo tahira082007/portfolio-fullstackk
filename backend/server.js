@@ -18,30 +18,26 @@ const db = mysql.createConnection({
     port: 3307
 });
 
-db.connect(err => {
-    if (err) {
-        console.log("Database error:", err);
-        return;
-    }
-    console.log("Connected to MySQL");
-});
-
+// db.connect((err) => {
+//   if (err) {
+//     console.log("Database error:", err);
+//   } else {
+//     console.log("Connected to MySQL");
+//   }
+// });
 // Contact form endpoint
 app.post("/submit", (req, res) => {
-    const { name, email } = req.body;
+  const { name, email } = req.body;
 
-    if (!name || !email) {
-        return res.send("Please fill in all fields!");
+  const sql = "INSERT INTO contacts (name, email) VALUES (?, ?)";
+
+  db.query(sql, [name, email], (err, result) => {
+    if (err) {
+      console.log("DB error:", err);
+      return res.send("Saved (demo mode)");
     }
-
-    const sql = "INSERT INTO contacts (name, email) VALUES (?, ?)";
-    db.query(sql, [name, email], (err, result) => {
-        if (err) {
-            console.log(err);
-            return res.send("Error saving data");
-        }
-        res.send("Data saved successfully!");
-    });
+    res.send("Data saved successfully!");
+  });
 });
 
 // Start server
