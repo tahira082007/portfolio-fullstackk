@@ -1,46 +1,24 @@
 const express = require("express");
-const mysql = require("mysql");
-const bodyParser = require("body-parser");
+const app = express();
 const cors = require("cors");
 
-const app = express();
-
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
-// MySQL connection
-const db = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",      // your MySQL username
-    password: "",      // your MySQL password
-    database: "portfolio",
-    port: 3307
+// Test route
+app.get("/", (req, res) => {
+  res.send("Server is running");
 });
 
-// db.connect((err) => {
-//   if (err) {
-//     console.log("Database error:", err);
-//   } else {
-//     console.log("Connected to MySQL");
-//   }
-// });
-// Contact form endpoint
+// Form route
 app.post("/submit", (req, res) => {
   const { name, email } = req.body;
 
-  const sql = "INSERT INTO contacts (name, email) VALUES (?, ?)";
+  console.log("Received:", name, email);
 
-  db.query(sql, [name, email], (err, result) => {
-    if (err) {
-      console.log("DB error:", err);
-      return res.send("Saved (demo mode)");
-    }
-    res.send("Data saved successfully!");
-  });
+  res.send("Data received successfully");
 });
 
-// Start server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
