@@ -156,6 +156,29 @@ fetch("https://portfolio-fullstackk-1.onrender.com/submit", {
   .catch(err => alert("Error sending data"));
 });
 </script>
+<script>
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // 🚨 VERY IMPORTANT
 
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  fetch("https://portfolio-fullstackk-1.onrender.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, email })
+  })
+  .then(res => res.text())
+  .then(data => {
+    alert(data); // show success message
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error sending message");
+  });
+});
+</script>
 </body>
 </html>
