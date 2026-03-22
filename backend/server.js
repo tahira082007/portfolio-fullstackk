@@ -3,8 +3,6 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const mysql = require("mysql2");
-const https = require("https");
-const fs = require("fs");
 
 // Middleware
 app.use(cors());
@@ -22,16 +20,16 @@ app.get("/", (req, res) => {
 // MySQL connection
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "tahira123",
+  user: "root",        // change if needed
+  password: "tahira123",        // add your password if any
   database: "project"
 });
 
 db.connect((err) => {
   if (err) {
-    console.error("DB connection failed:", err);
+    console.error("❌ DB connection failed:", err);
   } else {
-    console.log("Connected to MySQL ✅");
+    console.log("✅ Connected to MySQL");
   }
 });
 
@@ -40,33 +38,32 @@ app.post("/submit", (req, res) => {
   try {
     const { name, email, message } = req.body;
 
+    // Validation
     if (!name || !email || !message) {
       return res.status(400).send("All fields are required");
     }
 
     const sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
 
-    db.query(sql, [name, email, message], (err) => {
+    db.query(sql, [name, email, message], (err, result) => {
       if (err) {
-        console.error(err);
+        console.error("❌ DB Error:", err);
         return res.status(500).send("Error saving message");
       }
 
+      console.log("✅ Message Saved:", name, email);
       res.send("Message saved successfully ✅");
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("❌ ERROR:", error);
     res.status(500).send("Something went wrong");
   }
 });
 
-// 🔐 HTTPS server
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem")
-};
+// Start server
+const PORT = process.env.PORT || 3000;
 
-https.createServer(options, app).listen(3000, () => {
-  console.log("HTTPS Server running at https://localhost:3000");
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
