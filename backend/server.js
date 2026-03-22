@@ -3,6 +3,10 @@ const app = express();
 const cors = require("cors");
 
 app.use(cors());
+
+// 🔥 ADD THIS LINE
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.json());
 
 // Home route
@@ -10,12 +14,12 @@ app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-// Submit route (SAFE VERSION)
+// Submit route
 app.post("/submit", (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, message } = req.body;
 
-    console.log("Received:", name, email);
+    console.log("Received:", name, email, message);
 
     res.send("Data received successfully");
   } catch (error) {
