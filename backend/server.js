@@ -5,18 +5,23 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-// Test route
+// Home route
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-// Form route
+// Submit route (SAFE VERSION)
 app.post("/submit", (req, res) => {
-  const { name, email } = req.body;
+  try {
+    const { name, email } = req.body;
 
-  console.log("Received:", name, email);
+    console.log("Received:", name, email);
 
-  res.send("Data received successfully");
+    res.send("Data received successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
 });
 
 const PORT = process.env.PORT || 3000;
