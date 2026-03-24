@@ -23,7 +23,7 @@
 
     header {
       text-align: center;
-      padding: 70px 20px;
+      padding: 50px 20px;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       color: white;
       border-bottom-left-radius: 40px;
@@ -31,21 +31,19 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 
-    h1 {
-      font-size: 50px;
-      margin: 0;
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      margin-bottom: 15px;
     }
 
-    header p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
+    h1 { font-size: 50px; margin: 10px 0; }
+    header p { font-size: 18px; opacity: 0.9; }
 
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+    section { padding: 40px 20px; max-width: 950px; margin: auto; }
 
     h2 {
       margin-bottom: 15px;
@@ -80,23 +78,12 @@
       transition: transform 0.2s;
     }
 
-    .skills span:hover {
-      transform: scale(1.1);
-    }
+    .skills span:hover { transform: scale(1.1); }
 
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
+    .projects, .links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
 
     input, textarea {
       width: 100%;
@@ -136,22 +123,25 @@
     }
 
     @media(max-width: 768px) {
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 35px;
-      }
+      .projects, .links { grid-template-columns: 1fr; }
+      h1 { font-size: 35px; }
     }
+
+    a { text-decoration: none; color: #1e293b; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 
 <body>
 
 <header>
+  <img src="../profile.png" alt="Tahira Photo">
   <h1>Tahira</h1>
   <p>Aspiring Web Developer | Student</p>
+  <div class="links card">
+    <a href="https://www.linkedin.com/in/tahira-4a8764382" target="_blank">LinkedIn Profile</a>
+    <a href="https://github.com/tahira082007" target="_blank">GitHub Profile</a>
+  </div>
 </header>
 
 <section>
@@ -159,31 +149,34 @@
   <h2>About Me</h2>
   <div class="card">
     <p>
-      I am a dedicated BCA (Bachelor of Computer Applications) student with a strong interest in web development and technology. 
-      I enjoy learning new programming languages and building creative web applications. 
-      I have a good foundation in HTML, CSS, JavaScript, and backend technologies like Node.js. 
-      I am always eager to improve my skills and stay updated with the latest trends in the tech industry. 
-      My goal is to become a skilled full-stack developer and contribute to innovative projects.
+      I am a dedicated BCA student with a strong interest in web development, IoT, Edge Computing, and DBMS. 
+      My career goal is to become a full-stack developer contributing to innovative tech solutions.
     </p>
   </div>
 
   <h2>Education</h2>
   <div class="card">
-    <p><strong>10th Grade:</strong> New Citizen High School</p>
-    <p><strong>Percentage:</strong> 93%</p>
-
-    <p><strong>11th & 12th:</strong> St. Anne's Pre University College, Miller's Road</p>
-    <p><strong>11th Percentage:</strong> 94%</p>
-    <p><strong>12th (2nd PUC) Percentage:</strong> 98%</p>
+    <p><strong>BCA:</strong> St. Anne's Pre University College, Miller's Road</p>
+    <p><strong>Year:</strong> 2024-2027</p>
+    <p><strong>CGPA / Percentage:</strong> 9.5 / 98%</p>
+    <p><strong>10th Grade:</strong> New Citizen High School – 93%</p>
+    <p><strong>11th Grade:</strong> 94%</p>
   </div>
 
   <h2>Skills</h2>
-  <div class="card skills">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>Node.js</span>
-    <span>MySQL</span>
+  <div class="card">
+    <h4>Technical Skills</h4>
+    <div class="skills">
+      <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>MySQL</span>
+    </div>
+    <h4>Tools</h4>
+    <div class="skills">
+      <span>VS Code</span><span>Git</span><span>Postman</span><span>Figma</span>
+    </div>
+    <h4>Soft Skills</h4>
+    <div class="skills">
+      <span>Teamwork</span><span>Problem Solving</span><span>Communication</span>
+    </div>
   </div>
 
   <h2>Projects</h2>
@@ -191,10 +184,16 @@
     <div class="card">
       <h3>Lost & Found System</h3>
       <p>A platform where students can report lost and found items.</p>
+      <p><strong>Technologies:</strong> HTML, CSS, JS, Node.js, MySQL</p>
+      <p><strong>Role:</strong> Full Stack Developer</p>
+      <p><strong>Output:</strong> Streamlined reporting system for lost items in college.</p>
     </div>
     <div class="card">
       <h3>Portfolio Website</h3>
-      <p>A personal website showcasing my skills and work.</p>
+      <p>Personal website showcasing skills and work.</p>
+      <p><strong>Technologies:</strong> HTML, CSS, JS</p>
+      <p><strong>Role:</strong> Designer & Developer</p>
+      <p><strong>Output:</strong> Professional online presence to showcase projects.</p>
     </div>
   </div>
 
@@ -203,34 +202,29 @@
     <ul>
       <li>MongoDB Certification</li>
       <li>Infosys Certification</li>
-      <li>Udemy Course Certification</li>
+      <li>Udemy Courses</li>
       <li>Coursera Certification</li>
+      <li>Workshops / Training Programs</li>
     </ul>
   </div>
 
   <h2>Achievements</h2>
   <div class="card">
     <ul>
-      <li>Participated and recognized in Debate</li>
-      <li>Achievements in Singing</li>
+      <li>Debate Recognition</li>
+      <li>Singing Achievements</li>
       <li>Hindi Poetry Participation</li>
+      <li>Hackathon Participation</li>
     </ul>
   </div>
 
-  <h2>Extracurricular Activities</h2>
+  <h2>Interests</h2>
   <div class="card">
     <ul>
-      <li>Active in cultural activities</li>
-      <li>Participated in college events</li>
-    </ul>
-  </div>
-
-  <h2>Interests & Hobbies</h2>
-  <div class="card">
-    <ul>
+      <li>IoT</li>
+      <li>Edge Computing</li>
+      <li>Database Management Systems (DBMS)</li>
       <li>Web Designing</li>
-      <li>Listening to Music</li>
-      <li>Reading</li>
       <li>Creative Writing</li>
     </ul>
   </div>
@@ -261,14 +255,12 @@ document.getElementById("contactForm").addEventListener("submit", async function
     message: this.message.value
   };
 
-  console.log("Sending:", formData); // 👈 DEBUG
+  console.log("Sending:", formData);
 
   try {
     const response = await fetch("http://localhost:3000/submit", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(formData)
     });
 
