@@ -264,7 +264,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
   console.log("Sending:", formData); // 👈 DEBUG
 
   try {
-    const response = await fetch("/submit", {
+    const response = await fetch("http://localhost:3000/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
