@@ -172,7 +172,7 @@
     <p><strong>10th Grade:</strong> New Citizen High School</p>
     <p><strong>Percentage:</strong> 93%</p>
 
-    <p><strong>11th & 12th:</strong> St. Anne's Free University College, Miller's Road</p>
+    <p><strong>11th & 12th:</strong> St. Anne's Pre University College, Miller's Road</p>
     <p><strong>11th Percentage:</strong> 94%</p>
     <p><strong>12th (2nd PUC) Percentage:</strong> 98%</p>
   </div>
@@ -252,9 +252,33 @@
 </footer>
 
 <script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  alert("Message sent successfully! (Demo mode)");
+
+  const formData = {
+    name: this.name.value,
+    email: this.email.value,
+    message: this.message.value
+  };
+
+  console.log("Sending:", formData); // 👈 DEBUG
+
+  try {
+    const response = await fetch("/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.text();
+    alert(data);
+
+  } catch (error) {
+    console.error(error);
+    alert("Error ❌");
+  }
 });
 </script>
 
