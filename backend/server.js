@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../index.html"));
+  res.sendFile(path.resolve(__dirname, "../frontend/index.html"));
 });
 
 // ✅ MySQL connection
