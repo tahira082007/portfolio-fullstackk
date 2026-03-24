@@ -10,12 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // ✅ Correct frontend path
-const frontendPath = path.join(__dirname, "../frontend");
-app.use(express.static(frontendPath));
+// Serve files from main folder
+app.use(express.static(path.join(__dirname, "..")));
 
-// Home route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // ✅ MySQL connection
@@ -26,13 +25,13 @@ const db = mysql.createConnection({
   database: "project"
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("❌ DB connection failed:", err);
-  } else {
-    console.log("✅ Connected to MySQL");
-  }
-});
+// db.connect((err) => {
+//   if (err) {
+//     console.error("❌ DB connection failed:", err);
+//   } else {
+//     console.log("✅ Connected to MySQL");
+//   }
+// });
 
 // ✅ Submit route (with DEBUG)
 app.post("/submit", (req, res) => {
