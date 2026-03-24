@@ -17,42 +17,44 @@ app.get("/", (req, res) => {
 });
 
 // ✅ MySQL connection
-// const mysql = require("mysql2");
+const mysql = require("mysql2");
 
-// const db = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "tahira123",
-//   database: "project"
-// });
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "tahira123",
+  database: "project"
+});
 
-// db.connect((err) => {
-//   if (err) {
-//     console.error("❌ DB connection failed:", err);
-//   } else {
-//     console.log("✅ Connected to MySQL");
-//   }
-// });
+db.connect((err) => {
+  if (err) {
+    console.error("❌ DB connection failed:", err);
+  } else {
+    console.log("✅ Connected to MySQL");
+  }
+});
 
 // ✅ Submit route (with DEBUG)
 app.post("/submit", (req, res) => {
-  try {
-    console.log("📩 Incoming Data:", req.body); // 👈 IMPORTANT DEBUG
+  console.log("📩 Incoming Data:", req.body);
 
-    const { name, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-    // Validation
-    if (!name || !email || !message) {
-      return res.status(400).send("All fields are required");
+  if (!name || !email || !message) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
+
+  db.query(sql, [name, email, message], (err, result) => {
+    if (err) {
+      console.error("❌ DB ERROR:", err);
+      return res.status(500).send("Database error");
     }
 
-    console.log("Message received:", name, email, message);
-res.send("Message received ✅");
-
-  } catch (error) {
-    console.error("❌ SERVER ERROR:", error);
-    res.status(500).send("Something went wrong");
-  }
+    console.log("✅ Data stored in MySQL");
+    res.send("Message stored successfully ✅");
+  });
 });
 
 // Start server
