@@ -10,11 +10,13 @@ app.use(express.json());
 
 // ✅ Correct frontend path
 // Serve files from main folder
-app.use(express.static(path.join(__dirname, "../frontend")));
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/index.html"));
-});
+const frontendPath = path.join(__dirname, "../Frontend");
 
+app.use(express.static(frontendPath));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
 // ✅ MySQL connection
 const mysql = require("mysql2");
 
