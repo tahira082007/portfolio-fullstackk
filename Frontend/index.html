@@ -9,24 +9,36 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #0f172a;
-      color: white;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #a18cd1, #84fab0);
+      background-size: 300% 300%;
+      animation: bgMove 10s ease infinite;
+      color: #1e293b;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
       text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #1e293b, #3b82f6);
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 
     h1 {
-      font-size: 45px;
+      font-size: 50px;
       margin: 0;
     }
 
     header p {
       font-size: 18px;
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     section {
@@ -36,26 +48,40 @@
     }
 
     h2 {
-      margin-bottom: 10px;
-      border-left: 4px solid #3b82f6;
-      padding-left: 10px;
+      margin-bottom: 15px;
+      padding-left: 12px;
+      border-left: 6px solid #ff758c;
+      color: #0f172a;
     }
 
     .card {
-      background: #1e293b;
+      background: rgba(255, 255, 255, 0.85);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 15px;
       margin-top: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     }
 
     .skills span {
       display: inline-block;
-      background: #3b82f6;
-      padding: 8px 12px;
+      background: linear-gradient(45deg, #36d1dc, #5b86e5);
+      color: white;
+      padding: 8px 14px;
       margin: 5px;
-      border-radius: 20px;
+      border-radius: 25px;
       font-size: 14px;
+      transition: transform 0.2s;
+    }
+
+    .skills span:hover {
+      transform: scale(1.1);
     }
 
     .projects {
@@ -64,36 +90,59 @@
       gap: 15px;
     }
 
-    input, textarea, button {
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
-    }
-
-    input, textarea {
-      background: #334155;
-      color: white;
-    }
-
-    button {
-      background: #3b82f6;
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
       color: white;
       cursor: pointer;
       transition: 0.3s;
     }
 
     button:hover {
-      background: #2563eb;
+      background: linear-gradient(45deg, #36d1dc, #5b86e5);
+      transform: scale(1.05);
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background: #1e293b;
-      margin-top: 30px;
+      background: linear-gradient(135deg, #5b86e5, #36d1dc);
+      color: white;
+      margin-top: 40px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+
+    @media(max-width: 768px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 35px;
+      }
     }
   </style>
 </head>
@@ -106,9 +155,26 @@
 </header>
 
 <section>
+
   <h2>About Me</h2>
   <div class="card">
-    <p>I am a passionate student learning web development. I enjoy building simple and useful web applications.</p>
+    <p>
+      I am a dedicated BCA (Bachelor of Computer Applications) student with a strong interest in web development and technology. 
+      I enjoy learning new programming languages and building creative web applications. 
+      I have a good foundation in HTML, CSS, JavaScript, and backend technologies like Node.js. 
+      I am always eager to improve my skills and stay updated with the latest trends in the tech industry. 
+      My goal is to become a skilled full-stack developer and contribute to innovative projects.
+    </p>
+  </div>
+
+  <h2>Education</h2>
+  <div class="card">
+    <p><strong>10th Grade:</strong> New Citizen High School</p>
+    <p><strong>Percentage:</strong> 93%</p>
+
+    <p><strong>11th & 12th:</strong> St. Anne's Pre University College, Miller's Road</p>
+    <p><strong>11th Percentage:</strong> 94%</p>
+    <p><strong>12th (2nd PUC) Percentage:</strong> 98%</p>
   </div>
 
   <h2>Skills</h2>
@@ -132,6 +198,43 @@
     </div>
   </div>
 
+  <h2>Certifications</h2>
+  <div class="card">
+    <ul>
+      <li>MongoDB Certification</li>
+      <li>Infosys Certification</li>
+      <li>Udemy Course Certification</li>
+      <li>Coursera Certification</li>
+    </ul>
+  </div>
+
+  <h2>Achievements</h2>
+  <div class="card">
+    <ul>
+      <li>Participated and recognized in Debate</li>
+      <li>Achievements in Singing</li>
+      <li>Hindi Poetry Participation</li>
+    </ul>
+  </div>
+
+  <h2>Extracurricular Activities</h2>
+  <div class="card">
+    <ul>
+      <li>Active in cultural activities</li>
+      <li>Participated in college events</li>
+    </ul>
+  </div>
+
+  <h2>Interests & Hobbies</h2>
+  <div class="card">
+    <ul>
+      <li>Web Designing</li>
+      <li>Listening to Music</li>
+      <li>Reading</li>
+      <li>Creative Writing</li>
+    </ul>
+  </div>
+
   <h2>Contact Me</h2>
   <div class="card">
     <form id="contactForm">
@@ -141,7 +244,12 @@
       <button type="submit">Send Message</button>
     </form>
   </div>
+
 </section>
+
+<footer>
+  <p>© 2026 Tahira | Portfolio</p>
+</footer>
 
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
@@ -155,7 +263,6 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     message: formData.get("message")
   };
 
-  // ✅ FIXED: using localhost
   fetch("http://localhost:3000/submit", {
     method: "POST",
     headers: {
