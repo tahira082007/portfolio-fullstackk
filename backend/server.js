@@ -18,12 +18,14 @@ app.get("/", (req, res) => {
 });
 
 // ✅ MySQL connection
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "tahira123",
-  database: "project"
-});
+// const mysql = require("mysql2");
+
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "tahira123",
+//   database: "project"
+// });
 
 // db.connect((err) => {
 //   if (err) {
