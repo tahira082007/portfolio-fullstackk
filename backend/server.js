@@ -10,8 +10,7 @@ app.use(express.json());
 
 // ✅ Correct frontend path
 // Serve files from main folder
-app.use(express.static(path.join(__dirname, "..")));
-
+app.use(express.static(path.join(__dirname, "../frontend")));
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../frontend/index.html"));
 });
@@ -49,10 +48,10 @@ app.post("/submit", (req, res) => {
   db.query(sql, [name, email, message], (err, result) => {
     if (err) {
       console.error("❌ DB ERROR:", err);
-      return res.status(500).send("Database error");
+      return res.status(500).send("Database error ❌");
     }
 
-    console.log("✅ Data stored in MySQL");
+    console.log("✅ Data inserted:", result);
     res.send("Message stored successfully ✅");
   });
 });
