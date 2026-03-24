@@ -45,17 +45,8 @@ app.post("/submit", (req, res) => {
       return res.status(400).send("All fields are required");
     }
 
-    const sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
-
-    db.query(sql, [name, email, message], (err, result) => {
-      if (err) {
-        console.error("❌ DB Error FULL:", err); // 👈 FULL ERROR
-        return res.status(500).send("Error saving message");
-      }
-
-      console.log("✅ Message Saved:", name, email);
-      res.send("Message saved successfully ✅");
-    });
+    console.log("Message received:", name, email, message);
+res.send("Message received ✅");
 
   } catch (error) {
     console.error("❌ SERVER ERROR:", error);
